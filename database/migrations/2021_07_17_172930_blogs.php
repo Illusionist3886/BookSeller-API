@@ -18,7 +18,7 @@ class Blogs extends Migration
             $table->integer('user');
             $table->char('title',255)->nullable();
             $table->string('image')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

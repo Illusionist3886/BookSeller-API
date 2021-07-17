@@ -16,8 +16,9 @@ class Users extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->char('role',100);
+            $table->char('name',100);
             $table->char('email',100);
-            $table->char('password',100);
+            $table->string('password',255);
             $table->char('api_token',100)->nullable();
             $table->char('reset_token',100)->nullable();
             $table->char('phone',100)->nullable();

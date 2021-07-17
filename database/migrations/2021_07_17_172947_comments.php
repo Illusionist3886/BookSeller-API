@@ -17,7 +17,7 @@ class Comments extends Migration
             $table->id();
             $table->integer('user');
             $table->integer('blog');
-            $table->string('comment')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

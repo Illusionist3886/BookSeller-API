@@ -19,7 +19,7 @@ class Books extends Migration
             $table->char('image',100)->nullable();
             $table->string('writer')->nullable();
             $table->string('publisher')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->double('unit_price',10,2);
             $table->double('offer_price',10,2)->nullable();
             $table->double('discount',10,2)->nullable();

@@ -25,7 +25,9 @@ $app = new Laravel\Lumen\Application(
 
 $app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
+
+// $app->('APP_KEY','yRPdlTK6BhlVPE1IbPK9SCFuY8STRXr6');
 
 /*
 |--------------------------------------------------------------------------

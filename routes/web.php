@@ -13,13 +13,9 @@
 |
 */
 
-$router->post('/register', function () use ($router) {
-    // return $router->app->version();
-});
+$router->post('/register', 'AuthController@register');
 
-$router->post('/login', function () use ($router) {
-    // return $router->app->version();
-});
+$router->post('/login', 'AuthController@login');
 
 $router->post('/forgot-password', function () use ($router) {
     // return $router->app->version();

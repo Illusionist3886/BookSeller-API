@@ -17,7 +17,7 @@ class Reviews extends Migration
             $table->id();
             $table->integer('book');
             $table->string('user')->nullable();
-            $table->string('review')->nullable();
+            $table->text('review')->nullable();
             $table->string('stars')->nullable();
             $table->timestamps();
         });
