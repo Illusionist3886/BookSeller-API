@@ -18,9 +18,9 @@ class Orders extends Migration
             $table->integer('user');
             $table->string('books'); // Array of books and quantity
             $table->string('coupon')->nullable();
-            $table->integer('total',10,2);
-            $table->integer('discount',10,2);
-            $table->integer('net',10,2);
+            $table->double('total',10,2);
+            $table->double('discount',10,2);
+            $table->double('net',10,2);
             $table->string('payment')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('trx_id')->nullable();
