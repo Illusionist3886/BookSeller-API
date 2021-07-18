@@ -17,13 +17,13 @@ $router->post('/register', 'AuthController@register');
 
 $router->post('/login', 'AuthController@login');
 
-$router->post('/forgot-password', function () use ($router) {
-    // return $router->app->version();
-});
+$router->post('/forgot-password', 'AuthController@forgot');
 
-$router->post('/reset-password', function () use ($router) {
-    // return $router->app->version();
-});
+$router->post('/verify-token', 'AuthController@verify_token');
+
+$router->post('/test', 'AuthController@test');
+
+$router->post('/reset-password', 'AuthController@reset');
 
 $router->group(['middleware' => 'auth','namespace' => 'user'], function () use ($router) {
     $router->get('/dashboard', function () {

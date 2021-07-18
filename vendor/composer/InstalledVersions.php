@@ -25,12 +25,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'v8.1.1',
-    'version' => '8.1.1.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'e9b549e7d9d9aaa5974588cc236ef1446de25edb',
     'name' => 'laravel/lumen',
   ),
   'versions' => 
@@ -283,6 +283,15 @@ private static $installed = array (
       ),
       'reference' => '300aa13c086f25116b5f3cde3ca54ff5c822fb05',
     ),
+    'illuminate/mail' => 
+    array (
+      'pretty_version' => 'v8.50.0',
+      'version' => '8.50.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '052cd77efa1951c42139248df727265db0334164',
+    ),
     'illuminate/pagination' => 
     array (
       'pretty_version' => 'v8.49.2',
@@ -373,12 +382,12 @@ private static $installed = array (
     ),
     'laravel/lumen' => 
     array (
-      'pretty_version' => 'v8.1.1',
-      'version' => '8.1.1.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'e9b549e7d9d9aaa5974588cc236ef1446de25edb',
     ),
     'laravel/lumen-framework' => 
     array (
@@ -388,6 +397,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '1cd0c165e606e7de784fc7f4b7d3d93e0035dec6',
+    ),
+    'league/commonmark' => 
+    array (
+      'pretty_version' => '1.6.6',
+      'version' => '1.6.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c4228d11e30d7493c6836d20872f9582d8ba6dcf',
     ),
     'mockery/mockery' => 
     array (
@@ -625,8 +643,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -807,6 +825,15 @@ private static $installed = array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
     ),
+    'swiftmailer/swiftmailer' => 
+    array (
+      'pretty_version' => 'v6.2.7',
+      'version' => '6.2.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '15f7faf8508e04471f666633addacf54c0ab5933',
+    ),
     'symfony/console' => 
     array (
       'pretty_version' => 'v5.3.2',
@@ -815,6 +842,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '649730483885ff2ca99ca0560ef0e5f6b03f2ac1',
+    ),
+    'symfony/css-selector' => 
+    array (
+      'pretty_version' => 'v5.3.0',
+      'version' => '5.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'fcd0b29a7a0b1bb5bfbedc6231583d77fea04814',
     ),
     'symfony/deprecation-contracts' => 
     array (
@@ -912,6 +948,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '46cd95797e9df938fdd2b03693b5fca5e64b01ce',
+    ),
+    'symfony/polyfill-iconv' => 
+    array (
+      'pretty_version' => 'v1.23.0',
+      'version' => '1.23.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '63b5bb7db83e5673936d6e3b8b3e022ff6474933',
     ),
     'symfony/polyfill-intl-grapheme' => 
     array (
@@ -1045,6 +1090,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '75a63c33a8577608444246075ea0af0d052e452a',
+    ),
+    'tijsverkoyen/css-to-inline-styles' => 
+    array (
+      'pretty_version' => '2.2.3',
+      'version' => '2.2.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b43b05cf43c1b6d849478965062b6ef73e223bb5',
     ),
     'vlucas/phpdotenv' => 
     array (
