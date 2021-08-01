@@ -26,13 +26,11 @@ $router->post('/test', 'AuthController@test');
 $router->post('/reset-password', 'AuthController@reset');
 
 $router->group(['middleware' => 'auth','prefix' => 'user'], function () use ($router) {
-    $router->get('/dashboard', function () {
-        // Uses Auth Middleware
-    });
-
-    $router->get('user/profile', function () {
-        // Uses Auth Middleware
-    });
+    $router->post('/add-review', 'UserReviewController@add');
+    $router->post('/review-list', 'UserReviewController@list');
+    $router->post('/review-details', 'UserReviewController@details');
+    $router->post('/update-review', 'UserReviewController@update');
+    $router->post('/delete-review', 'UserReviewController@delete');
 });
 
 $router->group(['middleware' => 'auth','prefix' => 'admin'], function () use ($router) {
