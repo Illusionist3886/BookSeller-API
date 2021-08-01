@@ -55,6 +55,7 @@ $router->group(['middleware' => 'auth','prefix' => 'admin'], function () use ($r
 
     $router->post('/add-book', 'BookController@add');
     $router->post('/book-list', 'BookController@list');
+    $router->post('/book-details', 'BookController@details');
     $router->post('/update-book', 'BookController@update');
     $router->post('/delete-book', 'BookController@delete');
 

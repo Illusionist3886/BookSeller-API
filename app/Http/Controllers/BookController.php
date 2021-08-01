@@ -24,22 +24,27 @@ class BookController extends Controller
         {
             $featured = $request->file('image')->getClientOriginalName();
             $featured = Carbon::now()->format('Y-M-D h-i-s ').$featured;
-            $path = 'uploads/blogs';
+            $path = 'uploads/books';
             $request->file('image')->move($path, $featured);
         }
 
         $data = [
-            'user'  =>  $request->user()->id,
-            'title' => $request->title,
+            'name' => $request->name,
             'image' => $featured,
+            'writer' => $request->writer,
+            'publisher' => $request->publisher,
             'description' => $request->description,
+            'unit_price' => $request->unit_price,
+            'offer_price' => $request->offer_price,
+            'discount' => $request->discount,
+            'promotion_validity' => $request->promotion_validity,
             'created_at'    => Carbon::now()
         ];
 
-        $lastid = DB::table("blogs")->insertGetId($data);
+        $lastid = DB::table("books")->insertGetId($data);
         return response()->json([
             'status' => 'ok',
-            'blog_id' => $lastid,
+            'book_id' => $lastid,
         ]);
 
     }
@@ -54,10 +59,10 @@ class BookController extends Controller
                 'message'   => 'You cannot perform this action!'
             ], 403);
         }
-        $blogs = DB::table('blogs')->paginate(10);
+        $books = DB::table('books')->paginate(10);
         return response()->json([
             'status' => 'ok',
-            'blogs' => $blogs,
+            'books' => $books,
         ]);
     }
 
@@ -71,11 +76,29 @@ class BookController extends Controller
                 'message'   => 'You cannot perform this action!'
             ], 403);
         }
-        DB::table('blogs')->where(['id'=>$request->blog_id])->delete();
+        DB::table('books')->where(['id'=>$request->book_id])->delete();
         return response()->json([
             'status' => 'ok',
-            'message' => 'Blog Post Deleted!',
+            'message' => 'Book Deleted!',
         ]);
+    }
+
+    public function details(Request $request)
+    {
+        $role = $request->user()->role;
+        if($role!=='admin')
+        {
+            return response()->json([
+                'status' => 'error',
+                'message'   => 'You cannot perform this action!'
+            ], 403);
+        }
+        $book = DB::table('books')->where(['id'=>$request->book_id])->first();
+        return response()->json([
+            'status' => 'ok',
+            'details' => $book,
+        ]);
+
     }
 
     public function update(Request $request)
@@ -93,25 +116,30 @@ class BookController extends Controller
         {
             $featured = $request->file('image')->getClientOriginalName();
             $featured = Carbon::now()->format('Y-M-D h-i-s ').$featured;
-            $path = 'uploads/blogs';
+            $path = 'uploads/books';
             $request->file('image')->move($path, $featured);
         } else {
-            $blog = DB::table('blogs')->select(['image'])->where(['id'=>$request->blog_id])->first();
-            $featured = $blog->image;
+            $book = DB::table('books')->select(['image'])->where(['id'=>$request->book_id])->first();
+            $featured = $book->image;
         }
 
         $data = [
-            'user'  =>  $request->user()->id,
-            'title' => $request->title,
+            'name' => $request->name,
             'image' => $featured,
+            'writer' => $request->writer,
+            'publisher' => $request->publisher,
             'description' => $request->description,
+            'unit_price' => $request->unit_price,
+            'offer_price' => $request->offer_price,
+            'discount' => $request->discount,
+            'promotion_validity' => $request->promotion_validity,
             'updated_at'    => Carbon::now()
         ];
 
-        DB::table("blogs")->where(['id'=>$request->blog_id])->update($data);
+        DB::table("books")->where(['id'=>$request->book_id])->update($data);
         return response()->json([
             'status' => 'ok',
-            'message' => 'Post Updated Successfully!',
+            'message' => 'Book Updated Successfully!',
         ]);
 
     }
