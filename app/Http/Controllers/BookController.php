@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class PublicationController extends Controller
+class BookController extends Controller
 {
     public function add(Request $request)
     {
@@ -20,17 +20,26 @@ class PublicationController extends Controller
             ], 403);
         }
 
+        if($request->hasFile('image'))
+        {
+            $featured = $request->file('image')->getClientOriginalName();
+            $featured = Carbon::now()->format('Y-M-D h-i-s ').$featured;
+            $path = 'uploads/blogs';
+            $request->file('image')->move($path, $featured);
+        }
+
         $data = [
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'address' => $request->address,
+            'user'  =>  $request->user()->id,
+            'title' => $request->title,
+            'image' => $featured,
+            'description' => $request->description,
             'created_at'    => Carbon::now()
         ];
 
-        $lastid = DB::table("publications")->insertGetId($data);
+        $lastid = DB::table("blogs")->insertGetId($data);
         return response()->json([
             'status' => 'ok',
-            'publication_id' => $lastid,
+            'blog_id' => $lastid,
         ]);
 
     }
@@ -45,10 +54,10 @@ class PublicationController extends Controller
                 'message'   => 'You cannot perform this action!'
             ], 403);
         }
-        $publications = DB::table('publications')->paginate(10);
+        $blogs = DB::table('blogs')->paginate(10);
         return response()->json([
             'status' => 'ok',
-            'publications' => $publications,
+            'blogs' => $blogs,
         ]);
     }
 
@@ -62,29 +71,11 @@ class PublicationController extends Controller
                 'message'   => 'You cannot perform this action!'
             ], 403);
         }
-        DB::table('publications')->where(['id'=>$request->publication_id])->delete();
+        DB::table('blogs')->where(['id'=>$request->blog_id])->delete();
         return response()->json([
             'status' => 'ok',
-            'message' => 'Publication Deleted!',
+            'message' => 'Blog Post Deleted!',
         ]);
-    }
-
-    public function details(Request $request)
-    {
-        $role = $request->user()->role;
-        if($role!=='admin')
-        {
-            return response()->json([
-                'status' => 'error',
-                'message'   => 'You cannot perform this action!'
-            ], 403);
-        }
-        $publication = DB::table('publications')->where(['id'=>$request->publication_id])->first();
-        return response()->json([
-            'status' => 'ok',
-            'details' => $publication,
-        ]);
-
     }
 
     public function update(Request $request)
@@ -98,17 +89,29 @@ class PublicationController extends Controller
             ], 403);
         }
 
+        if($request->hasFile('image'))
+        {
+            $featured = $request->file('image')->getClientOriginalName();
+            $featured = Carbon::now()->format('Y-M-D h-i-s ').$featured;
+            $path = 'uploads/blogs';
+            $request->file('image')->move($path, $featured);
+        } else {
+            $blog = DB::table('blogs')->select(['image'])->where(['id'=>$request->blog_id])->first();
+            $featured = $blog->image;
+        }
+
         $data = [
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'address' => $request->address,
+            'user'  =>  $request->user()->id,
+            'title' => $request->title,
+            'image' => $featured,
+            'description' => $request->description,
             'updated_at'    => Carbon::now()
         ];
 
-        DB::table("publications")->where(['id'=>$request->publication_id])->update($data);
+        DB::table("blogs")->where(['id'=>$request->blog_id])->update($data);
         return response()->json([
             'status' => 'ok',
-            'message' => 'Publication Updated Successfully!',
+            'message' => 'Post Updated Successfully!',
         ]);
 
     }

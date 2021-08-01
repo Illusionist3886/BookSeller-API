@@ -40,6 +40,8 @@ $router->group(['middleware' => 'auth','prefix' => 'admin'], function () use ($r
     $router->post('/blog-list', 'BlogController@list');
     $router->post('/update-blog', 'BlogController@update');
     $router->post('/delete-blog', 'BlogController@delete');
+    $router->post('/blog-details', 'BlogController@details');
+
 
 
 
@@ -47,6 +49,16 @@ $router->group(['middleware' => 'auth','prefix' => 'admin'], function () use ($r
     $router->post('/publication-list', 'PublicationController@list');
     $router->post('/update-publication', 'PublicationController@update');
     $router->post('/delete-publication', 'PublicationController@delete');
+    $router->post('/publication-details', 'PublicationController@details');
 
-    
+
+
+    $router->post('/add-book', 'BookController@add');
+    $router->post('/book-list', 'BookController@list');
+    $router->post('/update-book', 'BookController@update');
+    $router->post('/delete-book', 'BookController@delete');
+
+
+
+
 });

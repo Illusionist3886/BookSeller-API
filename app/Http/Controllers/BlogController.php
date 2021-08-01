@@ -78,6 +78,24 @@ class BlogController extends Controller
         ]);
     }
 
+    public function details(Request $request)
+    {
+        $role = $request->user()->role;
+        if($role!=='admin')
+        {
+            return response()->json([
+                'status' => 'error',
+                'message'   => 'You cannot perform this action!'
+            ], 403);
+        }
+        $blog = DB::table('blogs')->where(['id'=>$request->blog_id])->first();
+        return response()->json([
+            'status' => 'ok',
+            'details' => $blog,
+        ]);
+
+    }
+
     public function update(Request $request)
     {
         $role = $request->user()->role;
