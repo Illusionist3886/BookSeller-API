@@ -25,7 +25,7 @@ $router->post('/test', 'AuthController@test');
 
 $router->post('/reset-password', 'AuthController@reset');
 
-$router->group(['middleware' => 'auth','namespace' => 'user'], function () use ($router) {
+$router->group(['middleware' => 'auth','prefix' => 'user'], function () use ($router) {
     $router->get('/dashboard', function () {
         // Uses Auth Middleware
     });
@@ -35,12 +35,18 @@ $router->group(['middleware' => 'auth','namespace' => 'user'], function () use (
     });
 });
 
-$router->group(['middleware' => 'auth','namespace' => 'admin'], function () use ($router) {
-    $router->get('/dashboard', function () {
-        // Uses Auth Middleware
-    });
+$router->group(['middleware' => 'auth','prefix' => 'admin'], function () use ($router) {
+    $router->post('/add-blog', 'BlogController@add');
+    $router->post('/blog-list', 'BlogController@list');
+    $router->post('/update-blog', 'BlogController@update');
+    $router->post('/delete-blog', 'BlogController@delete');
 
-    $router->get('user/profile', function () {
-        // Uses Auth Middleware
-    });
+
+
+    $router->post('/add-publication', 'PublicationController@add');
+    $router->post('/publication-list', 'PublicationController@list');
+    $router->post('/update-publication', 'PublicationController@update');
+    $router->post('/delete-publication', 'PublicationController@delete');
+
+    
 });
