@@ -45,7 +45,13 @@ $router->group(['middleware' => 'auth','prefix' => 'user'], function () use ($ro
     $router->post('/update-comment', 'UserCommentController@update');
     $router->post('/delete-comment', 'UserCommentController@delete');
 
-    
+
+
+    $router->post('/order', 'UserOrderController@order'); // 2-08
+    $router->post('/order-status', 'UserOrderController@order_status'); // 2-08
+
+
+
 });
 
 $router->group(['middleware' => 'auth','prefix' => 'admin'], function () use ($router) {
